@@ -1,10 +1,10 @@
 import Disclaimer from "@/components/Disclaimer";
 import Tbd from "@/components/Tbd";
+import Icon from "@/components/Icon";
 import {
   news,
   deliverables,
   researchTopics,
-  outcomes,
   testimonials,
   completion,
 } from "@/data/site";
@@ -12,8 +12,29 @@ import {
 export const metadata = {
   title: "Student work",
   description:
-    "What students produce: weekly computational lab notebooks, a journal paper presentation, a project proposal, and a capstone poster and talk.",
+    "Cohort news, the research topics students investigated, and what every student finishes with.",
 };
+
+function TopicCard({ topic, featured = false }) {
+  return (
+    <article className={featured ? "tcard tcard--featured" : "tcard"}>
+      <div className="tcard-img">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`/figures/${topic.figure}.svg`} alt="" aria-hidden="true" />
+      </div>
+      <div className="tcard-body">
+        <span className="card-tag">{topic.tag}</span>
+        <h3>{topic.title}</h3>
+        <p>{topic.body}</p>
+        <ul className="taglist">
+          {topic.skills.map((skill) => (
+            <li key={skill}>{skill}</li>
+          ))}
+        </ul>
+      </div>
+    </article>
+  );
+}
 
 export default function OutcomesPage() {
   return (
@@ -28,13 +49,16 @@ export default function OutcomesPage() {
           <ol className="newsboard">
             {news.map((item) => (
               <li className="newsitem" key={item.title}>
-                <div className="newsitem-meta">
-                  <span className="newsitem-tag">{item.tag}</span>
-                  <span className="newsitem-date">
-                    <Tbd value={item.date} />
-                  </span>
-                </div>
+                <span className="newsitem-icon">
+                  <Icon name={item.icon} size={30} />
+                </span>
                 <div>
+                  <div className="newsitem-meta">
+                    <span className="newsitem-tag">{item.tag}</span>
+                    <span className="newsitem-date">
+                      <Tbd value={item.date} />
+                    </span>
+                  </div>
                   <h2>{item.title}</h2>
                   <p>{item.body}</p>
                   {item.attribution && (
@@ -49,78 +73,45 @@ export default function OutcomesPage() {
         </div>
       </section>
 
-      <section className="band">
-        <div className="shell">
-          <div className="factrow">
-            {outcomes.map((item) => (
-              <div key={item.label}>
-                <span className="fact-value">
-                  <Tbd value={item.value} />
-                </span>
-                <span className="fact-label">{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="band band--raised">
-        <div className="shell">
-          <div className="band-head">
-            <span className="eyebrow">Deliverables</span>
-            <h2>What students finish with</h2>
-          </div>
-          <div className="grid grid--2">
-            {deliverables.map((item) => (
-              <article className="card" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            ))}
-          </div>
-          <p className="footnote">{completion.note}</p>
-        </div>
-      </section>
-
-      <section className="band">
         <div className="shell">
           <div className="band-head">
             <span className="eyebrow">Research topics</span>
             <h2>What students investigated</h2>
             <p className="prose">
-              Every project starts from a paper in the current literature, but
-              reading it is only the entry point. Students work the same
-              question with their own calculations — which means understanding
-              why the original authors chose the methods they did, and what the
-              numbers were actually evidence for.
+              Each project starts from a current research paper and is worked
+              through with the students&rsquo; own calculations.
             </p>
           </div>
-
-          <article className="topic topic--shared">
-            <span className="card-tag">{researchTopics.shared.tag}</span>
-            <h3>{researchTopics.shared.title}</h3>
-            <p>{researchTopics.shared.body}</p>
-            <ul className="taglist">
-              {researchTopics.shared.skills.map((skill) => (
-                <li key={skill}>{skill}</li>
-              ))}
-            </ul>
-          </article>
-
-          <div className="topics">
+          <div className="tgrid">
+            <TopicCard topic={researchTopics.shared} featured />
             {researchTopics.projects.map((topic) => (
-              <article className="topic" key={topic.title}>
-                <span className="card-tag">{topic.tag}</span>
-                <h3>{topic.title}</h3>
-                <p>{topic.body}</p>
-                <ul className="taglist">
-                  {topic.skills.map((skill) => (
-                    <li key={skill}>{skill}</li>
-                  ))}
-                </ul>
-              </article>
+              <TopicCard topic={topic} key={topic.title} />
             ))}
           </div>
+          <p className="footnote">
+            Molecules drawn from computed 3D structures of each system studied.
+            Gold dashes mark the interaction at the heart of each project.
+          </p>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="shell">
+          <div className="band-head">
+            <span className="eyebrow">Deliverables</span>
+            <h2>What students finish with</h2>
+          </div>
+          <ul className="icon-grid icon-grid--4">
+            {deliverables.map((item) => (
+              <li key={item.title}>
+                <Icon name={item.icon} size={30} />
+                <strong>{item.title}</strong>
+                <span>{item.body}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="footnote">{completion.note}</p>
         </div>
       </section>
 

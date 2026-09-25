@@ -33,14 +33,47 @@ came from, so it can be re-checked.
 
 | Route | What it covers |
 |---|---|
-| `/` | Anchor question, energy-profile diagram, software, design approach, what students gain, advisors, funding |
-| `/curriculum` | Stage 1 week by week, then Stage 2 with its meeting time and ACS milestones, design principles |
-| `/instructors` | Advisor and coordinator profiles |
-| `/outcomes` | News board, weekly deliverables, research topics, student feedback |
-| `/apply` | Who should apply, requirements, participation expectations and removal policy, notes for parents, FAQ |
+| `/` | Structure → computed-charge hero, five-molecule gallery with a toggle, energy profile, what students gain, advisors |
+| `/curriculum` | Stage 1 week by week, each with a figure or chart; Stage 2 as a Sunday-session timeline |
+| `/instructors` | Three portrait cards (photos pending) |
+| `/outcomes` | News board, research topics as image cards, deliverables, student feedback |
+| `/apply` | Program flyer, who should apply, requirements, expectations and parent notes, FAQ |
 
 The program-status disclaimer appears at the foot of **every** page via
 `components/Disclaimer.js`, in the exact wording from the poster.
+
+## Figures and how they were made
+
+Every molecule picture and chart on the site is generated from real data, not
+drawn by hand. The pipeline lives in `scripts/` and can be re-run:
+
+```bash
+pip install rdkit pyscf pyberny
+python3 scripts/geometries.py   # 3D structures (RDKit, MMFF)
+python3 scripts/qm.py           # B3LYP/6-31G* for the 5 shared molecules (~3 min)
+python3 scripts/opt_trace.py    # step-by-step optimization of acetone, HF and DFT
+python3 scripts/render.py       # writes public/figures/*.svg and data/computed.json
+```
+
+- **Ball-and-stick images** (`public/figures/<name>.svg`) use computed 3D
+  geometries.
+- **Electrostatic potential maps** (`<name>-esp.svg`) are the ESP computed at
+  B3LYP/6-31G* on each molecule's van der Waals surface. Red is electron-rich,
+  blue electron-poor, on one fixed scale for all five molecules.
+- **Charts** on the Stages page read `data/computed.json`: HOMO/LUMO energies,
+  dipole moments, and the energy at each step of a real geometry optimization.
+  Values match known results (benzene dipole exactly 0; acetone 2.81 D vs 2.88 D
+  measured).
+- **Research-topic scenes** (PFAS, CO₂ capture, CH₂F + NO₂, OH + phenol,
+  phenol with three waters, PET + phenol) are computed fragment structures
+  placed together at chemically sensible distances to show the system each
+  project studied. They are illustrations, not reproductions of any figure in
+  the source papers, so there is no copyright concern.
+- Computed with PySCF. Students use Psi4, which gives the same numbers at the
+  same level of theory.
+
+`public/brand/` holds the Catalyst Society mark and logo and the program flyer,
+all cropped from `ProgramPoster.png`.
 
 ## Photos
 
@@ -61,12 +94,20 @@ Three modules were taken out of the pages but their data is still in
   export is intact but nothing renders it. The site no longer describes the
   application process anywhere; the poster's two steps are the only public
   account of it now.
-- **"Admitted students participate at no cost"** (was on `/apply`, and the
-  funding wording was also removed from the home-page call to action) — the
-  `program.funding` strings are intact. Note that the FAQ still answers "Is
-  there a cost?" with the full NSF funding explanation, so the claim has not
-  left the site entirely. Remove that FAQ entry too if the intent was to stop
-  advertising the funding.
+- **Group size, duration and upcoming dates** — also removed everywhere (Sep
+  2026): "Small-group", every week count ("6 weeks", "5 weeks", "6 + 5"),
+  and every "Next cohort" date placeholder. The Week 1–6 headings and the
+  Stage 2 session timeline stay, since they are the curriculum itself. The
+  flyer image was edited to match: the "Small-group | 6 weeks" banner line and
+  the "6-week authentic research training experience" bullet are gone, and the
+  right column was re-spaced.
+- **All cost and funding wording** — by decision in Sep 2026 the site says
+  nothing about cost, price, or funding: the "$0" fact, the funding paragraph,
+  "NSF-funded", and the FAQ "Is there a cost?" are gone, and the data strings
+  were deleted rather than hidden. The flyer image (`public/brand/program-flyer.jpg`)
+  was edited to match: the "A Fully Funded Opportunity" paragraph is blanked,
+  "| NSF-funded" is cut from the banner, and the "NSF-funded for admitted
+  students" bullet is removed. The original poster is unchanged in the project files.
 
 ## Design notes
 
@@ -128,6 +169,16 @@ toward anonymised attribution by default.
 Faculty email addresses are also deliberately not published; inquiries route
 through the coordinator.
 
+## Still needed — added with the image redesign
+
+- [ ] **Three advisor photos.** The Advisors page is now built around portraits
+      and shows "Photo needed" until you add them (square crop works best).
+- [ ] **Stage 2 session topics 2–4.** The timeline labels for Sep 13, 20 and 27
+      ("Narrowing to a research question", "Proposed approach", "Abstract final
+      draft") are inferred from the email, which only says the first four weeks
+      develop the question, approach and abstract. Confirm or correct them in
+      `stage2.sessions` in `data/site.js`.
+
 ## Still needed
 
 **Blocking — the site cannot launch without these**
@@ -136,7 +187,6 @@ through the coordinator.
       responses. `/apply` currently says so honestly and offers an email
       instead. When applications reopen, set `program.applyUrl` to the live
       `/viewform` URL and `program.applicationsOpen` to `true`.
-- [ ] Next cohort dates for Stage 1 and Stage 2
 - [ ] Application deadline, decision timeline, kickoff date
 - [ ] Emma Liu's title for the public site
 
@@ -167,7 +217,7 @@ through the coordinator.
       you this is open, so it is tracked only here.
 - [ ] Does Bravodium appear publicly? It is not on the poster, so the site
       currently credits Catalyst Society alone.
-- [ ] Funding caveat — is there genuinely no cost at all to admitted students?
+- [x] ~~Funding caveat~~ — moot: cost and funding are no longer on the site.
       If so, delete that placeholder line rather than filling it.
 
 **Would strengthen the site**

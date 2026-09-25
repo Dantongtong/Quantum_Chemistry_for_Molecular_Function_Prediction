@@ -1,0 +1,69 @@
+{
+  "method": "B3LYP/6-31G*",
+  "engine": "PySCF",
+  "molecules": [
+    {
+      "key": "water",
+      "name": "Water",
+      "homo_ev": -7.9,
+      "lumo_ev": 1.78,
+      "gap_ev": 9.67,
+      "dipole_debye": 2.09
+    },
+    {
+      "key": "ethanol",
+      "name": "Ethanol",
+      "homo_ev": -7.1,
+      "lumo_ev": 2.12,
+      "gap_ev": 9.22,
+      "dipole_debye": 1.56
+    },
+    {
+      "key": "acetone",
+      "name": "Acetone",
+      "homo_ev": -6.64,
+      "lumo_ev": -0.3,
+      "gap_ev": 6.34,
+      "dipole_debye": 2.81
+    },
+    {
+      "key": "benzene",
+      "name": "Benzene",
+      "homo_ev": -6.7,
+      "lumo_ev": 0.1,
+      "gap_ev": 6.8,
+      "dipole_debye": 0.0
+    },
+    {
+      "key": "trifluoroethanol",
+      "name": "2,2,2-Trifluoroethanol",
+      "homo_ev": -8.08,
+      "lumo_ev": 1.71,
+      "gap_ev": 9.79,
+      "dipole_debye": 1.47
+    }
+  ],
+  "esp_range_au": 0.045,
+  "optimization": {
+    "molecule": "acetone",
+    "basis": "6-31G*",
+    "traces_kcal": {
+      "HF": [
+        0.0,
+        -1.2034,
+        -2.0505,
+        -2.0684,
+        -2.0697,
+        -2.0699
+      ],
+      "B3LYP": [
+        0.0,
+        -0.6771,
+        -0.735,
+        -0.7442,
+        -0.7432,
+        -0.7446
+      ]
+    }
+  }
+}

@@ -7,13 +7,13 @@
 //
 // 只改这个文件就够了。TBD("...") 会在页面上显示成橙色虚线标记。
 //
-// OFFICIAL WORDING: the disclaimer, funding paragraph, program highlights,
+// OFFICIAL WORDING: the disclaimer, program highlights,
 // "who should apply", "what students gain", and the application steps are
 // copied from the Catalyst Society program poster and should stay in sync with
 // it. If the poster changes, change these strings — not the pages.
 //
 // WHERE THE FACTS COME FROM:
-//   ProgramPoster.png ................ official public wording, funding,
+//   ProgramPoster.png ................ official public wording,
 //                                      disclaimer, application steps
 //   Stage 2 announcement email ....... Stage 2 dates, meeting time, ACS deadline
 //   QCMFP_6Week_Map.docx ............. Stage 1 week-by-week arc
@@ -21,6 +21,10 @@
 //   QCMFP_DesignPrinciples.docx ...... anchor question, pedagogy
 //   Proposal_Edits.docx .............. eligibility, participation policy
 // ---------------------------------------------------------------------------
+
+// COST: by decision (Sep 2026), the site says nothing about cost, price, or
+// funding. The flyer image in public/brand/ has its funding paragraph covered.
+// Don't reintroduce cost wording without checking with the program team.
 
 export const TBD_PREFIX = "__TBD__";
 export const TBD = (label) => `${TBD_PREFIX}${label}`;
@@ -32,28 +36,24 @@ export const program = {
   subtitle: "A research opportunity for highly motivated high school students",
   guidedBy:
     "Guided by Prof. Zhongyue John Yang, Vanderbilt University, Department of Chemistry",
-  badge: "Small-group · 6 weeks · NSF-funded",
   host: "Catalyst Society",
   lede:
-    "In this program, students explore a key idea: a molecule's function often follows from its electronic structure — and computation is now a core tool for working that out.",
+    "This program introduces students to the idea that molecular function can often be understood and predicted from electronic structure — and that computation plays a central role in modern chemistry.",
   anchorQuestion:
-    "How does electronic structure shape what a molecule does?",
+    "How does electronic structure help explain and predict molecular function?",
   // Poster: "Explore How Molecules Work".
   explore:
     "Why are some molecules more stable than others? Why do some molecules bind more strongly to biological targets? Why do certain materials behave differently under the same conditions?",
-  format: "Small-group · virtual",
   weeklyLoad: "About 5–6 hours of independent work per week",
   priorCohort: "Stage 1 of the first cohort ran June 11 – July 22, 2026.",
-  cohortDates: "September, 2026",
 
   applyUrl:
     "https://docs.google.com/forms/d/e/1FAIpQLSemPMUWtIvbjtGYWgEUC_WvzhkeEgFC6A0i69FteCrPMG35AQ/closedform",
   // The URL above ends in /closedform, which is what Google serves when a form
   // has stopped accepting responses. Set this to true and swap in the live
   // /viewform URL when applications reopen.
-  applicationsOpen: true,
-  applicationsClosedNote:
-    "Applications for the next cohort are not open yet. The form below shows the most recent application; check back or email us to be notified when it reopens.",
+  applicationsOpen: false,
+  applicationsClosedNote: "Applications for the next cohort are not open yet.",
 
   contact: {
     name: "Emma Liu",
@@ -65,17 +65,12 @@ export const program = {
   disclaimer:
     "This is not an official Vanderbilt University program and does not constitute Vanderbilt University sponsorship, certification, academic credit, or admissions endorsement.",
 
-  funding: {
-    headline: "A fully funded opportunity",
-    body:
-      "Program value is approximately $8,000 per student. Admitted students participate at no cost through NSF funding.",
-  },
 };
 
 // Poster: "Program Highlights".
 export const highlights = [
   "Guided by a Vanderbilt University professor",
-  "6-week authentic research training experience",
+  "Authentic research training experience",
   "A pathway to further research mentorship",
 ];
 
@@ -99,7 +94,7 @@ export const studentGains = [
 // ---------------------------------------------------------------------------
 // THE TWO STAGES
 //
-// Stage 1 is the 6-week program on the poster. Stage 2 is the "pathway to
+// Stage 1 is the foundational program on the poster. Stage 2 is the "pathway to
 // further research mentorship" that poster line refers to: students who
 // complete Stage 1 continue into individual research and an ACS abstract.
 // ---------------------------------------------------------------------------
@@ -107,140 +102,77 @@ export const studentGains = [
 // Drives the hero energy diagram. Three stationary points: the Stage 1 climb,
 // the point between stages, and Stage 2.
 export const stages = [
-  {
-    n: 1,
-    label: "Stage 1 · Foundations",
-    body:
-      "Six weeks of shared inquiry. Everyone works the same molecule set, learns the same software workflow, and builds the common language a research conversation needs.",
-    meta: "6 weeks",
-  },
-  {
-    n: 2,
-    label: "Between stages",
-    body:
-      "Stage 1 ends with a capstone presentation. Students who complete it and show the potential and commitment to go further continue into Stage 2.",
-    meta: "By invitation",
-  },
-  {
-    n: 3,
-    label: "Stage 2 · Research",
-    body:
-      "Five weeks developing an individual research project, preparing an ACS abstract submission, and beginning the transition into conducting the research itself.",
-    meta: "5 weeks",
-  },
+  { n: 1, label: "Stage 1 · Foundations", body: "Shared molecules, shared tools, a capstone poster." },
+  { n: 2, label: "Between stages", body: "By invitation: students who show potential and commitment continue." },
+  { n: 3, label: "Stage 2 · Research", body: "An individual project and an ACS abstract." },
 ];
 
 export const stage1 = {
   name: "Stage 1",
   title: "Foundations and shared inquiry",
-  length: "6 weeks",
-  format: "Small-group, virtual",
-  lede:
-    "Everyone starts in the same place, on the same five molecules, with the same software. Weeks 1–3 build the shared foundation. Weeks 4–5 are the project phase. Week 6 is the capstone.",
-  dates: TBD("Stage 1 dates for the next cohort"),
+  lede: "Weeks 1–3 shared foundation · Weeks 4–5 project · Week 6 capstone",
   ran: "June 11 – July 22, 2026",
   outcome: "A research poster, an oral presentation, and a written summary.",
 };
 
+// `figure` names the image shown beside each week (see components/WeekFigure.js).
 export const stage1Weeks = [
   {
     n: 1,
     title: "Foundations",
-    theme: "Structure gives clues, but computation gives deeper evidence",
-    body:
-      "Atoms, orbitals, and the periodic table through a quantum lens. Build and look up the five shared molecules in WebMO, clean them up, inspect them in 3D, log bond lengths, angles, and dihedrals, and export XYZ coordinates. Then review Psi4 snapshots of 2,2,2-trifluoroethanol to see what a calculation shows that a static structure cannot.",
-    concepts: [
-      "Molecular representations",
-      "Functional groups",
-      "Bond polarity vs. molecular polarity",
-      "Why structural models are incomplete",
-    ],
-    deliverable: "Shared comparison checkpoint and Psi4 preview notes",
-    hours: "About 5–6 hours",
+    body: "Build the five shared molecules in WebMO, measure them, and make first predictions from structure alone.",
+    concepts: ["Molecular structure", "Polarity", "WebMO"],
+    deliverable: "Comparison checkpoint",
+    figure: "molecules",
   },
   {
     n: 2,
     title: "The quantum chemistry toolbox",
-    theme: "Computation refines structure and produces evidence",
-    body:
-      "What a calculation actually does: the Schrödinger equation, basis sets, and DFT in plain language. Run your first geometry optimizations — one Hartree–Fock and one DFT calculation per molecule, with the method and basis set chosen on purpose — then compare starting, optimized, and experimental geometries.",
-    concepts: [
-      "HF vs. DFT",
-      "STO-3G, 6-31G, 6-31G*",
-      "Geometry optimization",
-      "Comparing to experiment",
-    ],
-    deliverable: "Computational lab notebook",
-    hours: "About 5–6 hours",
+    body: "Run your first Hartree–Fock and DFT geometry optimizations and compare them with experiment.",
+    concepts: ["HF vs. DFT", "Basis sets", "Optimization"],
+    deliverable: "Lab notebook",
+    figure: "optimization",
   },
   {
     n: 3,
     title: "Interpreting results",
-    theme: "Computational outputs as evidence for chemical interpretation",
-    body:
-      "Extract chemical meaning from output: HOMO and LUMO energies, the HOMO–LUMO gap, Mulliken partial charges, dipole moments, and electrostatic potential maps. The setup is fixed at B3LYP/6-31G* for every molecule, so differences between molecules are differences in chemistry, not in settings.",
-    concepts: [
-      "Frontier orbitals",
-      "Partial charges",
-      "Electrostatic potential maps",
-      "Interpreting output as evidence",
-    ],
-    deliverable: "Descriptor comparison checkpoint",
-    hours: "About 5–6 hours",
+    body: "Read orbitals, charges, dipoles, and electrostatic potential maps as chemical evidence.",
+    concepts: ["HOMO / LUMO", "Partial charges", "ESP maps"],
+    deliverable: "Descriptor checkpoint",
+    figure: "orbitals",
   },
   {
     n: 4,
     title: "From descriptors to prediction",
-    theme: "Project launch",
-    body:
-      "The shared phase ends and the project begins. Narrow a researchable question, choose a focal molecule or molecular family and one or two comparison molecules, and decide which computational outputs will actually serve as evidence for the question you picked.",
-    concepts: [
-      "Scoping a question",
-      "Choosing comparison sets",
-      "Selecting evidence",
-    ],
+    body: "Choose a focal molecule and comparison molecules, and frame a research question.",
+    concepts: ["Comparison sets", "Research question"],
     deliverable: "Project proposal",
-    hours: "About 5–6 hours",
+    figure: "comparison",
   },
   {
     n: 5,
     title: "Analysis and interpretation",
-    theme: "Evidence supports a focused claim",
-    body:
-      "Sustained project time. Run the calculations, interpret the outputs, compare focal and comparison molecules, draft the figures, build a claim from the evidence, and be honest about limitations and remaining questions. Revising scope is allowed and often correct.",
-    concepts: [
-      "Claim, evidence, reasoning",
-      "Selecting the strongest outputs",
-      "Limitations and uncertainty",
-    ],
-    deliverable: "Project analysis draft",
-    hours: "About 5–6 hours",
+    body: "Run your own calculations and build a claim the evidence can support.",
+    concepts: ["Claim · evidence · reasoning", "Limitations"],
+    deliverable: "Analysis draft",
+    figure: "dipoles",
   },
   {
     n: 6,
     title: "Capstone and presentation",
-    theme: "Work is not finished until it is communicated",
-    body:
-      "Organize a focused argument, select the evidence that carries it, and present the question, findings, limitations, and next steps. Stage 1 ends with a real performance task rather than a final content quiz.",
-    concepts: [
-      "Scientific storytelling",
-      "Organizing an argument",
-      "Communicating limits and next steps",
-    ],
-    deliverable: "Research poster, oral presentation, and written summary",
-    hours: "About 5 hours",
+    body: "Present the question, the evidence, and its limits.",
+    concepts: ["Poster", "Oral presentation"],
+    deliverable: "Poster, talk, and written summary",
+    figure: "poster",
   },
 ];
 
 export const stage2 = {
   name: "Stage 2",
   title: "Research and the ACS abstract",
-  length: "5 weeks",
-  lede:
-    "Stage 2 moves from the foundational work of Stage 1 into developing your own research project. Sunday sessions combine live workshops, research discussions, and project development, with research tasks to work on between meetings as the project takes shape.",
+  lede: "Weekly Sunday workshops that turn Stage 1 skills into your own research project.",
   meeting: "Sundays, 1:00–2:00 PM PST / 3:00–4:00 PM CST, on Zoom",
   ran: "September 6 – October 4, 2026",
-  dates: TBD("Stage 2 dates for the next cohort"),
   platform: "Materials and resources are posted in a Stage 2 Google Classroom.",
   focus: [
     "Developing your individual research project",
@@ -248,7 +180,16 @@ export const stage2 = {
     "Beginning the transition into conducting your research",
   ],
   arc:
-    "The first meeting starts with literature searching and research idea generation: how to search the scientific literature, identify areas that interest you, recognize possible research questions, and narrow those ideas into project directions. The first four weeks focus heavily on developing and refining the research question, the proposed approach, and the abstract. The final meeting reviews where each project stands after submission and discusses the next phase of the research.",
+    "The first meeting starts with literature searching and research idea generation: how to search the scientific literature, identify areas that interest you, recognize possible research questions, and narrow those ideas into project directions. The early sessions focus heavily on developing and refining the research question, the proposed approach, and the abstract. The final meeting reviews where each project stands after submission and discusses the next phase of the research.",
+  // One entry per Sunday session, drawn as a timeline. First cohort dates.
+  sessions: [
+    { date: "Sep 6", label: "Literature search and research ideas" },
+    { date: "Sep 13", label: "Narrowing to a research question" },
+    { date: "Sep 20", label: "Proposed approach" },
+    { date: "Sep 27", label: "Abstract final draft" },
+    { date: "Oct 4", label: "Review and next phase" },
+  ],
+  deadline: { date: "Sep 28", label: "ACS abstract deadline", after: 3 },
   milestones: [
     {
       when: "Week 1",
@@ -295,7 +236,7 @@ export const designNotes = {
   body:
     "The curriculum is designed backward from what students should be able to do at the end, and organized around one anchor question rather than a sequence of software tutorials. Molecules are taught in comparison sets, because function is rarely visible in a single structure — it shows up in what changes when one substituent changes. Every computational tool is introduced to answer a chemical question, not as a skill to acquire.",
   points: [
-    "Anchored in one chemical question for all six weeks",
+    "Anchored in one chemical question throughout",
     "Comparison sets, not isolated example molecules",
     "Increasing student choice: shared work first, individual inquiry later",
     "Aligned to NGSS HS-PS1-1",
@@ -305,7 +246,6 @@ export const designNotes = {
 };
 
 export const facts = [
-  { value: "6 + 5", label: "Weeks across Stage 1 and Stage 2" },
   { value: "5–6 hrs", label: "Independent work per week" },
   { value: "5", label: "Shared molecules everyone analyzes" },
 ];
@@ -329,7 +269,7 @@ export const instructors = [
       "Research training",
     ],
     bio:
-      "Professor Yang is directly involved in the academic design of the program, research training, and milestone feedback, guiding students through the study of quantum chemistry and molecular function prediction.",
+      "Leads the academic design, research training, and milestone feedback.",
     credentials: TBD(
       "Lab name, research area, notable work — confirm wording with him before publishing"
     ),
@@ -346,7 +286,7 @@ export const instructors = [
       "Scientific reading and writing",
     ],
     bio:
-      "Ms. Cunningham shapes the week-by-week curriculum and the assignments students actually work through, including the reading guides that teach students to read a research paper in purposeful passes rather than straight through. She leads the Stage 2 research workshops.",
+      "Designs the weekly curriculum and reading guides, and leads the Stage 2 workshops.",
     credentials: TBD("Title and background — confirm wording with her"),
   },
   {
@@ -357,7 +297,7 @@ export const instructors = [
     photo: null,
     focus: ["Student mentoring", "Check-in sessions", "Applicant interviews"],
     bio:
-      "Runs the day-to-day program: scheduling, weekly check-ins, applicant interviews, and one-on-one mentoring across both stages.",
+      "Runs weekly check-ins, applicant interviews, and one-on-one mentoring.",
     credentials: TBD("Background / affiliation detail"),
   },
 ];
@@ -398,9 +338,10 @@ export const news = [
   {
     date: TBD("Exact date — IChO 2026, Tashkent, Uzbekistan"),
     tag: "Cohort news",
+    icon: "medal",
     title: "A student won an IChO gold medal",
     body:
-      "A member of the 2026 cohort competed at the International Chemistry Olympiad in Uzbekistan and came home with a gold medal, finishing 13th by total score. They rejoined the program the same week and presented their paper on schedule.",
+      "A 2026 cohort member won gold at the International Chemistry Olympiad in Uzbekistan, 13th by total score — then presented their paper on schedule the same week.",
     attribution: TBD(
       "Confirm written permission before naming the student — guardian signs if under 18. Otherwise leave this anonymised"
     ),
@@ -408,42 +349,28 @@ export const news = [
   {
     date: "July 2026",
     tag: "Stage 1",
+    icon: "poster",
     title: "The first cohort finished Stage 1",
     body:
-      "Six weeks after starting on the same five molecules, every student presented an individual project: the question, the evidence, the interpretation, and the limitations.",
+      "Every student presented an individual research project.",
     attribution: null,
   },
   {
     date: "September 2026",
     tag: "Stage 2",
+    icon: "flask",
     title: "Stage 2 began, aimed at an ACS abstract",
     body:
-      "Students advancing from Stage 1 started five weeks of individual research development, working toward an abstract submitted to the American Chemical Society.",
+      "Individual research, working toward an ACS abstract.",
     attribution: null,
   },
 ];
 
 export const deliverables = [
-  {
-    title: "Weekly computational lab notebooks",
-    body:
-      "Not worksheets. Students record which method and basis set they chose and why, what actually ran, what failed, what surprised them, and which questions they want to return to. It is the habit a working computational chemist keeps.",
-  },
-  {
-    title: "A journal paper presentation",
-    body:
-      "Each student picks one paper from the current literature, works through it in passes with a reading guide, and presents it to the group — including the parts they had to go and look up.",
-  },
-  {
-    title: "A Stage 1 poster, talk, and written summary",
-    body:
-      "The Stage 1 capstone. The question, the evidence, the interpretation, and — required, not optional — the limitations and what would come next.",
-  },
-  {
-    title: "A Stage 2 research abstract",
-    body:
-      "In Stage 2, each student develops an individual research project and prepares an abstract for submission to the American Chemical Society.",
-  },
+  { icon: "notebook", title: "Lab notebooks", body: "Every calculation: the method chosen, what ran, what surprised you." },
+  { icon: "paper", title: "Paper presentation", body: "One current research paper, worked through and presented." },
+  { icon: "poster", title: "Capstone poster", body: "Stage 1 poster, talk, and written summary." },
+  { icon: "abstract", title: "ACS abstract", body: "A Stage 2 research abstract for the American Chemical Society." },
 ];
 
 // Research topics students worked on. Deliberately described by the question
@@ -454,45 +381,45 @@ export const researchTopics = {
   shared: {
     tag: "Whole cohort",
     title: "Why PFAS refuse to break down",
-    body:
-      "PFAS are called forever chemicals because the carbon–fluorine bonds holding them together resist almost everything the environment throws at them. The cohort worked through a study that computed 550 of those bond strengths at a high level of theory, then used them to test whether faster, cheaper methods get the same answer. The uncomfortable finding students had to sit with: the errors grow as molecules become more fluorinated and larger, so a method validated on small ordinary molecules cannot simply be trusted on PFAS.",
-    skills: ["Bond dissociation energies", "Benchmarking", "Method selection"],
+    body: "550 carbon–fluorine bond strengths computed at high accuracy — and the finding that cheaper methods grow less reliable as molecules get more fluorinated.",
+    skills: ["Bond energies", "Benchmarking"],
+    figure: "pfas",
   },
   projects: [
     {
       tag: "Carbon capture",
-      title: "Which molecules can pull CO₂ out of the air",
-      body:
-        "Direct air capture needs molecules that grip CO₂ firmly enough to catch it from a very dilute atmosphere. This project screened amino-functionalized molecules and compared how strongly each binds CO₂ against how strongly it binds water — because in real air, water is the competition. The work traced why nitrogen-containing groups attract CO₂ at all: the electron-rich nitrogen meets the electron-poor carbon at the centre of the CO₂ molecule.",
-      skills: ["Binding energies", "Screening candidates", "Competing interactions"],
+      title: "Pulling CO₂ out of the air",
+      body: "Screening amino molecules for how strongly they grab CO₂ — and whether water outcompetes it.",
+      skills: ["Binding energies", "Screening"],
+      figure: "co2_capture",
     },
     {
       tag: "Reaction mechanisms",
-      title: "What happens when a radical meets a pollutant",
-      body:
-        "A fluorinated methyl radical collides with nitrogen dioxide. What comes out? This project mapped the full energy landscape: a first step with no barrier at all, an intermediate that rearranges, and several competing routes that fall apart into different products. Because the slowest step sits essentially level with the starting materials, the reaction is fast — which is exactly why it matters for removing NO₂ from combustion exhaust.",
-      skills: ["Potential energy surfaces", "Transition states", "Competing pathways"],
+      title: "A radical meets a pollutant",
+      body: "Mapping every pathway when CH₂F meets NO₂; the first step has no barrier at all.",
+      skills: ["Energy surfaces", "Transition states"],
+      figure: "radical",
     },
     {
       tag: "Method validation",
-      title: "Whether the method itself can be trusted",
-      body:
-        "Before believing a computed number, you have to know how the method behaves on cases where the answer is already known. This project compared how a range of DFT functionals handle OH radicals attacking aromatic pollutants — the reaction that begins breaking those pollutants down in the atmosphere — and found that methods agreeing on the overall trend can still disagree on the barrier heights that set the rate.",
-      skills: ["Benchmarking", "Kinetics", "Reading error bars"],
+      title: "Can the method be trusted?",
+      body: "Testing DFT methods on OH attacking aromatic pollutants, where barrier heights set the rate.",
+      skills: ["Benchmarking", "Kinetics"],
+      figure: "oh_addition",
     },
     {
       tag: "Property prediction",
-      title: "Predicting how readily a molecule gives up a proton",
-      body:
-        "A molecule's pKa decides whether it carries a charge at a given pH, which in turn governs how it dissolves, binds, and reacts. This project worked through pKa predictions for alcohols, phenols, and hydroperoxides and ran straight into the solvent problem: modelling water as a smooth background leaves errors of more than six pKa units, while placing three actual water molecules around the reacting site brings predictions to within about half a unit.",
-      skills: ["Solvation models", "Acid–base chemistry", "Comparing to experiment"],
+      title: "Predicting pKa",
+      body: "Three explicit water molecules cut prediction errors from over 6 pKa units to about 0.5.",
+      skills: ["Solvation", "Acid–base"],
+      figure: "pka",
     },
     {
       tag: "Microplastics",
-      title: "Why pollutants stick to microplastics",
-      body:
-        "Microplastics are a concern partly because they ferry other pollutants around with them. This project examined how small organic pollutants attach to a PET surface. The binding turned out to be mostly weak hydrogen bonding rather than the ring-stacking you might expect from an aromatic polymer — and where on the surface a pollutant lands matters far more than how large the plastic particle is.",
-      skills: ["Intermolecular forces", "Surface adsorption", "Hydrogen bonding"],
+      title: "Why pollutants stick to plastic",
+      body: "Pollutants cling to PET mostly by hydrogen bonds, and the binding site matters more than particle size.",
+      skills: ["Hydrogen bonding", "Adsorption"],
+      figure: "microplastics",
     },
   ],
 };
@@ -597,8 +524,7 @@ export const eligibility = {
 
 export const expectations = {
   heading: "A commitment-based program",
-  body:
-    "This is a small group. One person coasting changes the experience for everyone else, so admitted students are expected to:",
+  body: "Admitted students are expected to:",
   items: [
     "Attend sessions, discussions, and presentations on time",
     "Complete assigned tasks and project deliverables",
@@ -606,24 +532,20 @@ export const expectations = {
     "Respond constructively to academic feedback and revise accordingly",
   ],
   policy:
-    "The program includes an ongoing evaluation process. Repeated unexcused absences, missed assignments, insufficient contribution to group progress, or no meaningful improvement after feedback can lead to a warning, a formal review, and if necessary the end of a student's participation.",
+    "Participation is reviewed throughout. Repeated absences or missed work can end a student's place in the program.",
 };
 
 export const parentNotes = [
-  "This is a research training program, not a conventional tutoring program. Students are expected to participate actively and work independently.",
-  "The program emphasizes real engagement and academic discipline. It is not designed as an enrichment activity or a guaranteed credential-building experience.",
-  "The program includes selection and accountability. The interview is required, and there are participation review and removal mechanisms to maintain quality.",
-  "Students who demonstrate strong potential may later be considered for more advanced or individualized research support.",
+  "A research training program, not tutoring — students work independently.",
+  "Not an enrichment activity or guaranteed credential.",
+  "Selective: a required interview and ongoing participation review.",
+  "Strong students may be considered for further research support.",
 ];
 
 export const faqs = [
   {
-    q: "Is there a cost?",
-    a: "No. Program value is approximately $8,000 per student, and admitted students participate at no cost through NSF funding.",
-  },
-  {
     q: "What is the difference between Stage 1 and Stage 2?",
-    a: "Stage 1 is the six-week foundational program: shared molecules, shared software, and a capstone poster and presentation. Stage 2 runs five weeks and moves into individual research projects and an ACS abstract submission. Students advance from Stage 1 into Stage 2 rather than applying separately.",
+    a: "Stage 1 is the foundational program: shared molecules, shared software, and a capstone poster and presentation. Stage 2 moves into individual research projects and an ACS abstract submission. Students advance from Stage 1 into Stage 2 rather than applying separately.",
   },
   {
     q: "Do I need to know how to code?",
@@ -638,16 +560,8 @@ export const faqs = [
     a: "No. It is guided by a professor from Vanderbilt University, Department of Chemistry, but it is not an official Vanderbilt University program and does not constitute Vanderbilt University sponsorship, certification, academic credit, or admissions endorsement.",
   },
   {
-    q: "What do I come away with?",
-    a: "A clearly defined research question, a preliminary set of findings, a poster or equivalent research presentation, and stronger habits in scientific thinking, communication, and execution.",
-  },
-  {
     q: "What if I miss a session?",
     a: "Sessions are recorded, so one missed session does not put you behind. Repeated unexcused absence is a different matter — see the participation expectations above.",
-  },
-  {
-    q: "Who can I contact with questions?",
-    a: "Email the program contact at the address in the footer. Parents are welcome to write on a student's behalf.",
   },
 ];
 

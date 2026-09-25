@@ -3,7 +3,7 @@ import { stages } from "@/data/site";
 /**
  * The signature element.
  *
- * The six-week arc drawn as what the program actually teaches students to
+ * The program arc drawn as what the program actually teaches students to
  * read: an energy profile. The dashed curve is the barrier between a curious
  * high school student and a defensible research claim when they attempt it
  * alone. The solid curve is the same path with a catalyst — which is, not
@@ -22,14 +22,14 @@ export default function ReactionCoordinate() {
   return (
     <section className="rxn" aria-labelledby="rxn-heading">
       <h2 id="rxn-heading" className="eyebrow">
-        Six weeks, as an energy profile
+        The program, as an energy profile
       </h2>
 
       <div className="rxn-frame">
         <svg
           viewBox="0 0 900 360"
           role="img"
-          aria-label="An energy profile diagram. A dashed curve shows a high barrier between a curious student and a defensible research claim. A solid curve shows the same path with a much lower barrier, marked with three numbered phases: shared foundation in weeks one to three, focused project in weeks four and five, and capstone in week six."
+          aria-label="An energy profile diagram. A dashed curve shows a high barrier between a curious student and a defensible research claim. A solid curve shows the same path with a much lower barrier, marked with three numbered points: Stage 1 foundations, the step between stages, and Stage 2 research."
         >
           <line className="rxn-axis" x1="48" y1="24" x2="48" y2="332" />
           <line className="rxn-axis" x1="48" y1="332" x2="884" y2="332" />
@@ -81,20 +81,19 @@ export default function ReactionCoordinate() {
                 <span className="rxn-legend-num" aria-hidden="true">
                   {stage.n}
                 </span>
-                {stage.title}
+                {stage.label}
               </h3>
               <p>{stage.body}</p>
-              <span className="rxn-legend-meta">{stage.meta}</span>
+              {stage.meta && <span className="rxn-legend-meta">{stage.meta}</span>}
             </div>
           ))}
         </div>
       </div>
 
-      <div className="prose" style={{ marginTop: "1.25rem", fontSize: "0.9rem" }}>
-        <div>Dashed line: researchon your own | Solid line: research in the program</div>
-        <div style={{ whiteSpace: "nowrap" }}>The gap between them is what a catalyst does — it does not change the destination, it lowers what it costs to get there.</div>
-        <br/>
-      </div>
+      <p className="rxn-caption">
+        Dashed: research on your own. Solid: with a catalyst — same destination,
+        lower barrier.
+      </p>
     </section>
   );
 }

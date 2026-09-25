@@ -1,17 +1,18 @@
 import Link from "next/link";
 import ReactionCoordinate from "@/components/ReactionCoordinate";
+import MoleculeGallery from "@/components/MoleculeGallery";
+import EspLegend from "@/components/EspLegend";
 import Disclaimer from "@/components/Disclaimer";
+import Icon from "@/components/Icon";
 import Tbd from "@/components/Tbd";
-import {
-  program,
-  facts,
-  tools,
-  designNotes,
-  studentGains,
-  highlights,
-  pullQuote,
-  instructors,
-} from "@/data/site";
+import { program, facts, studentGains, pullQuote, instructors } from "@/data/site";
+
+const GAIN_ICONS = ["flask", "target", "abstract", "poster", "check"];
+
+function initials(name) {
+  const parts = name.replace(/^(Prof\.|Dr\.|Ms\.|Mr\.)\s*/, "").split(" ");
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
 
 export default function HomePage() {
   return (
@@ -20,41 +21,53 @@ export default function HomePage() {
         <span className="eyebrow">
           {program.host} · Vanderbilt University, Department of Chemistry
         </span>
-        <h1 className="hero-short">Predict molecular function in Quantum Chemistry</h1>
-        <p className="lede hero-lede">{program.anchorQuestion} {program.lede}</p>
-        <div className="hero-meta">
-          <span>{program.badge}</span>
-          <span>
-            <Tbd value={program.cohortDates} />
-          </span>
+        <h1 className="hero-short">Explore how molecules work</h1>
+        <div className="hero--split">
+        <div>
+          <p className="lede hero-lede">{program.anchorQuestion}</p>
+          <div className="actions">
+            <Link className="btn" href="/apply">
+              Apply to the program
+            </Link>
+            <Link className="btn btn--ghost" href="/curriculum">
+              See both stages
+            </Link>
+          </div>
         </div>
-        <div className="actions">
-          <Link className="btn" href="/apply">
-            Apply to the program
-          </Link>
-          <Link className="btn btn--ghost" href="/curriculum">
-            See both stages
-          </Link>
+
+        <figure className="hero-figure">
+          <div className="hero-pair">
+            <div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/figures/trifluoroethanol.svg" alt="Trifluoroethanol structure" />
+              <span>What you build</span>
+            </div>
+            <span className="hero-arrow" aria-hidden="true">→</span>
+            <div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/figures/trifluoroethanol-esp.svg" alt="Trifluoroethanol electrostatic potential" />
+              <span>What you compute</span>
+            </div>
+          </div>
+          <figcaption>
+            2,2,2-Trifluoroethanol <EspLegend />
+          </figcaption>
+        </figure>
         </div>
       </section>
 
-      <div className="shell">
-        <ReactionCoordinate />
-      </div>
+      <section className="band band--raised">
+        <div className="shell">
+          <div className="band-head">
+            <span className="eyebrow">Five shared molecules</span>
+            <h2>Where every student starts</h2>
+          </div>
+          <MoleculeGallery />
+        </div>
+      </section>
 
       <section className="band">
         <div className="shell">
-          <div className="band-head">
-            <span className="eyebrow">Program highlights</span>
-            <h2>What the program is</h2>
-          </div>
-          <ul className="ticklist" style={{ marginBottom: "3rem" }}>
-            {highlights.map((item) => (
-              <li key={item}>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
           <div className="factrow">
             {facts.map((fact) => (
               <div key={fact.label}>
@@ -65,55 +78,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="band band--raised">
-        <div className="shell">
-          <div className="band-head">
-            <span className="eyebrow">Why it matters</span>
-            <h2>Beyond the flask</h2>
-            <p className="prose">
-              Computational methods now predict how molecules behave, react, and
-              function — often before a single experiment is run. Why are some
-              molecules more stable than others? Why do some bind more strongly
-              to biological targets? Why do certain materials behave differently
-              under the same conditions? This program introduces students to the
-              idea that molecular function can often be understood and predicted
-              from electronic structure.
-            </p>
-          </div>
-          <div className="grid grid--3">
-            {tools.map((tool) => (
-              <article className="card" key={tool.name}>
-                <span className="card-tag">Tool</span>
-                <h3>{tool.name}</h3>
-                <p>{tool.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="band">
-        <div className="shell">
-          <div className="band-head">
-            <span className="eyebrow">{designNotes.eyebrow}</span>
-            <h2>{designNotes.heading}</h2>
-            <p className="prose">{designNotes.body}</p>
-          </div>
-          <ul className="ticklist">
-            {designNotes.points.map((point) => (
-              <li key={point}>
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-          <p style={{ marginTop: "2rem" }}>
-            <Link className="btn btn--ghost" href="/curriculum">
-              Read the week-by-week plan
-            </Link>
-          </p>
+          <ReactionCoordinate />
         </div>
       </section>
 
@@ -123,9 +88,10 @@ export default function HomePage() {
             <span className="eyebrow">What students gain</span>
             <h2>What students gain</h2>
           </div>
-          <ul className="ticklist">
-            {studentGains.map((gain) => (
+          <ul className="icon-grid">
+            {studentGains.map((gain, i) => (
               <li key={gain}>
+                <Icon name={GAIN_ICONS[i]} size={28} />
                 <span>{gain}</span>
               </li>
             ))}
@@ -145,41 +111,46 @@ export default function HomePage() {
             <span className="eyebrow">Who guides it</span>
             <h2>Advised by working chemists</h2>
           </div>
-          <div className="grid grid--3">
+          <ul className="people">
             {instructors.map((person) => (
-              <article className="card" key={person.slug}>
-                <span className="card-tag">{person.role}</span>
-                <h3>{person.name}</h3>
-                <p>{person.affiliation}</p>
-                <p>{person.teaches}</p>
-              </article>
+              <li key={person.slug}>
+                <Link href="/instructors" className="person-chip">
+                  <span className="avatar" aria-hidden="true">
+                    {person.photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={`/instructors/${person.photo}`} alt="" />
+                    ) : (
+                      initials(person.name)
+                    )}
+                  </span>
+                  <span>
+                    <strong>{person.name}</strong>
+                    <small>{person.role}</small>
+                  </span>
+                </Link>
+              </li>
             ))}
-          </div>
-          <p style={{ marginTop: "2rem" }}>
-            <Link className="btn btn--ghost" href="/instructors">
-              Read full profiles
-            </Link>
-          </p>
+          </ul>
         </div>
       </section>
 
       <section className="band band--plain">
         <div className="shell">
-          <div className="callout">
-            <span className="eyebrow" style={{ color: "rgba(238,241,236,0.65)" }}>
-              Admissions
-            </span>
-            <h2>Applications for the next cohort</h2>
-            <p>
-              Every applicant has a required interview before a decision is
-              made. We are looking for curiosity and follow-through, not a
-              résumé.
-            </p>
-            <div className="actions">
-              <Link className="btn" href="/apply">
-                Start an application
-              </Link>
+          <div className="callout callout--image">
+            <div>
+              <span className="eyebrow" style={{ color: "rgba(238,241,236,0.65)" }}>
+                Admissions
+              </span>
+              <h2>Applications for the next cohort</h2>
+              <p>A short form and a required interview.</p>
+              <div className="actions">
+                <Link className="btn" href="/apply">
+                  Start an application
+                </Link>
+              </div>
             </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/figures/benzene-esp.svg" alt="" aria-hidden="true" />
           </div>
         </div>
       </section>

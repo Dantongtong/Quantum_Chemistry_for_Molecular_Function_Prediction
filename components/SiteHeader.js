@@ -11,8 +11,9 @@ export default function SiteHeader() {
     <header className="masthead">
       <div className="shell masthead-inner">
         <Link href="/" className="wordmark">
-          <span className="wordmark-mark">QC</span>
-          <span>Quantum Chemistry for Molecular Function Prediction</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="wordmark-logo" src="/brand/catalyst-mark.png" alt="Catalyst Society" />
+          <span>Quantum Chemistry Program</span>
         </Link>
         <nav className="navlinks" aria-label="Main">
           {nav.map((item) => (
