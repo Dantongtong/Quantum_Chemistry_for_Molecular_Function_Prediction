@@ -73,9 +73,6 @@ export default function CurriculumPage() {
           <div className="band-head">
             <div className="stage-head">
               <span className="stage-badge">{stage2.name}</span>
-              <span className="stage-meta">
-                {stage2.meeting}
-              </span>
             </div>
             <h2>{stage2.title}</h2>
             <p className="prose">{stage2.lede}</p>
@@ -85,7 +82,7 @@ export default function CurriculumPage() {
             First cohort: {stage2.ran}
           </p>
           <p className="stage-meta">
-            {stage2.entry} <Tbd value={stage2.entryNote} />
+            {stage2.entry}
           </p>
         </div>
       </section>

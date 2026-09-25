@@ -91,8 +91,8 @@ export default function ReactionCoordinate() {
       </div>
 
       <p className="rxn-caption">
-        Dashed: research on your own. Solid: with a catalyst — same destination,
-        lower barrier.
+        Dashed: research on your own<br/> Solid: with a catalyst — same destination,
+        lower barrier
       </p>
     </section>
   );

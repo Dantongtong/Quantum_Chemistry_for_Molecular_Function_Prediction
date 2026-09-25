@@ -171,7 +171,6 @@ export const stage2 = {
   name: "Stage 2",
   title: "Research and the ACS abstract",
   lede: "Weekly Sunday workshops that turn Stage 1 skills into your own research project.",
-  meeting: "Sundays, 1:00–2:00 PM PST / 3:00–4:00 PM CST, on Zoom",
   ran: "September 6 – October 4, 2026",
   platform: "Materials and resources are posted in a Stage 2 Google Classroom.",
   focus: [
@@ -207,9 +206,6 @@ export const stage2 = {
   ],
   entry:
     "Stage 2 is not a separate application. Students advance from Stage 1.",
-  entryNote: TBD(
-    "How advancement is decided — is every Stage 1 completer invited, or is it selective? State it plainly here"
-  ),
 };
 
 export const tools = [
@@ -452,7 +448,7 @@ export const testimonials = [
 export const pullQuote = {
   text:
     "Before this program I had little exposure to computational methods and how they applied to chemistry. It has given me newfound motivation to continue pursuing quantum chemistry research.",
-  attribution: TBD("Confirm written permission before publishing"),
+  attribution: "Students from 2026 Cohort",
 };
 
 // One line, shown quietly under the deliverables list rather than as its own
