@@ -296,12 +296,12 @@ export const instructors = [
   {
     slug: "zhu",
     name: "Dantong Zhu",
-    role: "Program Coordinator",
+    role: "Technical & Program Coordinator",
     affiliation: "",
     photo: "zhu.jpg",
-    focus: ["Student mentoring", "Check-in sessions", "Applicant interviews"],
+    focus: ["Student mentoring and coordinating", "Program website", "Colab notebooks"],
     bio:
-      "Runs weekly check-ins, applicant interviews, and one-on-one mentoring.",
+      "Runs weekly check-ins, builds Colab notebook and this website, and coordinate students.",
   },
 ];
 
