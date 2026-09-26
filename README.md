@@ -77,9 +77,15 @@ all cropped from `ProgramPoster.png`.
 
 ## Photos
 
-Drop files in `public/instructors/`, then set `photo` in `data/site.js` to the
-filename (e.g. `photo: "yang.jpg"`). Until then the site shows an initials
-block, which reads as intentional rather than broken.
+Advisor photos live in `public/instructors/` and are referenced by the `photo`
+field in `data/site.js` (`yang.jpg`, `cunningham.jpg`, `zhu.jpg`). They were
+supplied by the program team in Sep 2026 and cropped to 4:5 at 640px wide.
+To swap one, drop in a replacement at the same path — a 4:5 crop with the face
+in the upper third matches the others. If `photo` is `null`, the card falls back
+to an initials block with a "Photo needed" marker.
+
+An advisor can also have an optional `link` ({ label, href }), shown under the
+profile — Prof. Yang's points to the ZJYang Lab.
 
 ## Sections that were removed on request
 
@@ -171,8 +177,6 @@ through the coordinator.
 
 ## Still needed — added with the image redesign
 
-- [ ] **Three advisor photos.** The Advisors page is now built around portraits
-      and shows "Photo needed" until you add them (square crop works best).
 - [ ] **Stage 2 session topics 2–4.** The timeline labels for Sep 13, 20 and 27
       ("Narrowing to a research question", "Proposed approach", "Abstract final
       draft") are inferred from the email, which only says the first four weeks
@@ -221,8 +225,8 @@ through the coordinator.
       If so, delete that placeholder line rather than filling it.
 
 **Would strengthen the site**
-- [ ] Advisor bios and titles, confirmed with each of them
-- [ ] Advisor photos
+- [ ] Advisor bios and titles, confirmed with each of them (Prof. Yang's line
+      about the ZJYang Lab was written from the lab site — worth confirming)
 - [ ] Journal and year for the five paper-presentation options
 - [ ] Poster images or figures from the 2026 cohort, with permission
 - [ ] A parent or advisor quote, with permission

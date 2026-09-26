@@ -171,6 +171,7 @@ export const stage2 = {
   name: "Stage 2",
   title: "Research and the ACS abstract",
   lede: "Weekly Sunday workshops that turn Stage 1 skills into your own research project.",
+  meeting: "Sundays, 1:00–2:00 PM PST / 3:00–4:00 PM CST, on Zoom",
   ran: "September 6 – October 4, 2026",
   platform: "Materials and resources are posted in a Stage 2 Google Classroom.",
   focus: [
@@ -206,6 +207,9 @@ export const stage2 = {
   ],
   entry:
     "Stage 2 is not a separate application. Students advance from Stage 1.",
+  entryNote: TBD(
+    "How advancement is decided — is every Stage 1 completer invited, or is it selective? State it plainly here"
+  ),
 };
 
 export const tools = [
@@ -248,7 +252,9 @@ export const facts = [
 
 // ---------------------------------------------------------------------------
 // PEOPLE
-// Photos: drop files in /public/instructors/ and set `photo` to the filename.
+// Photos live in /public/instructors/; `photo` is the filename. Supplied by
+// the program team, Sep 2026. `link` is optional: an external page for that
+// person, shown as a link under their profile.
 // Advisor emails are deliberately not published — inquiries route to the
 // program contact above.
 // ---------------------------------------------------------------------------
@@ -258,24 +264,26 @@ export const instructors = [
     name: "Prof. Zhongyue John Yang",
     role: "Academic Advisor",
     affiliation: "Vanderbilt University, Department of Chemistry",
-    photo: null,
+    photo: "yang.jpg",
     focus: [
       "Computational chemistry",
+      "Protein engineering",
       "Molecular function prediction",
-      "Research training",
     ],
     bio:
       "Leads the academic design, research training, and milestone feedback.",
-    credentials: TBD(
-      "Lab name, research area, notable work — confirm wording with him before publishing"
-    ),
+    // From the lab site: the group builds Mutexa, a physics-informed AI
+    // platform for protein engineering. Check with him before expanding this.
+    credentials:
+      "Principal investigator of the ZJYang Lab, which develops physics-informed AI for protein engineering and enzyme design.",
+    link: { label: "ZJYang Lab", href: "https://lab.vanderbilt.edu/zyang-lab/" },
   },
   {
     slug: "cunningham",
     name: "Ms. Kendra Cunningham",
     role: "Academic Advisor",
     affiliation: "Vanderbilt University, Department of Chemistry",
-    photo: null,
+    photo: "cunningham.jpg",
     focus: [
       "Curriculum design",
       "Chemistry education",
@@ -283,18 +291,17 @@ export const instructors = [
     ],
     bio:
       "Designs the weekly curriculum and reading guides, and leads the Stage 2 workshops.",
-    credentials: TBD("Title and background — confirm wording with her"),
+    credentials: "PhD student at ZJYang Lab",
   },
   {
     slug: "zhu",
-    name: "Ms. Dantong Zhu",
+    name: "Dantong Zhu",
     role: "Program Coordinator",
-    affiliation: "Catalyst Society",
-    photo: null,
+    affiliation: "",
+    photo: "zhu.jpg",
     focus: ["Student mentoring", "Check-in sessions", "Applicant interviews"],
     bio:
       "Runs weekly check-ins, applicant interviews, and one-on-one mentoring.",
-    credentials: TBD("Background / affiliation detail"),
   },
 ];
 
@@ -332,15 +339,12 @@ export const outcomes = [
 // ---------------------------------------------------------------------------
 export const news = [
   {
-    date: TBD("Exact date — IChO 2026, Tashkent, Uzbekistan"),
+    date: "IChO 2026, Tashkent, Uzbekistan",
     tag: "Cohort news",
     icon: "medal",
     title: "A student won an IChO gold medal",
     body:
       "A 2026 cohort member won gold at the International Chemistry Olympiad in Uzbekistan, 13th by total score — then presented their paper on schedule the same week.",
-    attribution: TBD(
-      "Confirm written permission before naming the student — guardian signs if under 18. Otherwise leave this anonymised"
-    ),
   },
   {
     date: "July 2026",
@@ -433,14 +437,12 @@ export const testimonials = [
   {
     quote:
       "Rather than simply running the provided code, I took the time to look through the lines of code and understand how each section works. When I encountered an error, I tried to trace the source of the issue and understand why it arose. This process helped me link the chemical concepts with the computational methods.",
-    attribution: TBD(
-      "Confirm written permission, then set to 'Student, 2026 cohort' — or the student's name if they and their guardian agree to be named"
-    ),
+    attribution: 'Student from 2026 cohort'
   },
   {
     quote:
       "I had already developed an interest in PFAS molecules before the program began, so I was ecstatic when a paper on PFAS was incorporated into it. Seeing different computational methods tested on chemicals like PFAS reinforced my belief that quantum chemistry has tremendous potential for understanding environmentally relevant chemical processes.",
-    attribution: TBD("Same permission as above"),
+    attribution: 'Student from 2026 cohort'
   },
 ];
 
@@ -448,7 +450,7 @@ export const testimonials = [
 export const pullQuote = {
   text:
     "Before this program I had little exposure to computational methods and how they applied to chemistry. It has given me newfound motivation to continue pursuing quantum chemistry research.",
-  attribution: "Students from 2026 Cohort",
+  attribution: "Student from Cohort 2026",
 };
 
 // One line, shown quietly under the deliverables list rather than as its own

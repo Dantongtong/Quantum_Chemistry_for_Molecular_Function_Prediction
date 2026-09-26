@@ -57,6 +57,16 @@ export default function InstructorsPage() {
                 <p className="portrait-cred">
                   <Tbd value={person.credentials} />
                 </p>
+                {person.link && (
+                  <p className="portrait-link">
+                    <a href={person.link.href} target="_blank" rel="noreferrer">
+                      {person.link.label}
+                      <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
+                        <path d="M4 2.5h5.5V8M9.5 2.5 3 9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  </p>
+                )}
               </li>
             ))}
           </ul>

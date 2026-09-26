@@ -2469,3 +2469,25 @@ a {
     flex-basis: 100%;
   }
 }
+
+/* External link under an advisor's profile */
+.portrait-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  color: var(--brand);
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+
+.portrait-link a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Round avatars: bias the crop toward the face rather than the centre */
+.avatar img {
+  object-position: 50% 22%;
+}
